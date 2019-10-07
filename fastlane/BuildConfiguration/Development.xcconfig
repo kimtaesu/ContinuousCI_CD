@@ -12,5 +12,7 @@
 #include "BuildType/Debug.BuildType.xcconfig"
 #include "Common/Common.xcconfig"
 
-PRODUCT_NAME = [Debug] Numero
-PRODUCT_BUNDLE_IDENTIFIER = com.assin.numero.debug
+PRODUCT_NAME = Debug_AssinCICD
+DISPLAY_NAME = Debug_AssinCICD
+PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuous.debug
+APP_IDENTIFIER = com.assin.continuous.debug

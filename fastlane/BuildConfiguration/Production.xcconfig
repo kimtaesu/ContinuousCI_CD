@@ -12,5 +12,7 @@
 #include "BuildType/Release.BuildType.xcconfig"
 #include "Common/Common.xcconfig"
 
-PRODUCT_NAME = Numero
-PRODUCT_BUNDLE_IDENTIFIER = com.assin.Numero
+DISPLAY_NAME = AssinCICD
+PRODUCT_NAME = AssinCICD
+PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuous
+APP_IDENTIFIER = com.assin.continuous

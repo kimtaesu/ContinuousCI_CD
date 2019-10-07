@@ -483,6 +483,7 @@
 /* Begin XCBuildConfiguration section */
 		BDD18FE5234B3392009A4B5C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDD18FF1234B344D009A4B5C /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -543,6 +544,7 @@
 		};
 		BDD18FE6234B3392009A4B5C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDD18FF5234B344D009A4B5C /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -607,7 +609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.assin.ContinuousCI-CD";
+				PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -626,7 +628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.assin.ContinuousCI-CD";
+				PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
