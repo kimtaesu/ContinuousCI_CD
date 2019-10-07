@@ -1,0 +1,40 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+import './Accounts'
+import './AppConfig'
+
+default_platform(:ios)
+
+
+
+platform :ios do
+  desc "Generate new localized screenshots"
+  lane :screenshots do
+    capture_screenshots(workspace: "ContinuousCI_CD.xcworkspace", scheme: "Development")
+    upload_to_app_store(skip_binary_upload: true, skip_metadata: true)
+  end
+  lane :release do
+  end
+
+  lane :lint do 
+  	precheck(
+  		app_identifier:lane_context['bundle_id'],
+  		username:lane_context['username'],
+  		team_id:lane_context['team_id'],
+  		team_name:lane_context['team_name']
+  		)
+  end 
+end
