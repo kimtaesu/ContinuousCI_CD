@@ -15,12 +15,20 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+### set_build_version
+```
+fastlane set_build_version
+```
+Generate new localized screenshots
+
+----
+
 ## iOS
 ### ios release
 ```
 fastlane ios release
 ```
-Generate new localized screenshots
+Push a new release build to the App Store
 
 ----
 

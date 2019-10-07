@@ -13,12 +13,28 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+import './VersionFastFile'
+
 default_platform(:ios)
 
+PRODUCTION_CONFIG_PATH = 'fastlane/BuildConfiguration/Production.xcconfig'
+VERSION_CONFIG_PATH = 'fastlane/BuildConfiguration/Common/Versions.xcconfig'
+
+lane_context[SharedValues::BUILD_NUMBER] = get_xcconfig_value(
+  path: VERSION_CONFIG_PATH,
+  name: 'LONG_BUNDLE_VERSION'
+)
+
+lane_context[SharedValues::VERSION_NUMBER] = get_xcconfig_value(
+  path: VERSION_CONFIG_PATH,
+  name: 'BUNDLE_VERSION'
+) 
+
 platform :ios do
-  desc "Generate new localized screenshots"
+  desc "Push a new release build to the App Store"
   lane :release do | options |
-    puts options
+    set_build_version(options)
+    puts "determine version_number: [#{lane_context[SharedValues::VERSION_NUMBER]}] build_number: [#{lane_context[SharedValues::BUILD_NUMBER]}]"
   end
 end
 

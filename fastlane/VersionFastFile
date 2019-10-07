@@ -1,0 +1,25 @@
+
+  desc "Generate new localized screenshots"
+  lane :set_build_version do | options |
+
+    version_number = ""
+
+    if options[:'v']
+      version_number = options[:'v']
+    end
+
+    if options[:'version']
+      version_number = options[:'version']
+    end
+
+    if version_number.nil? || version_number.empty?
+      raise 'Usage: fastlane release v:1.2 or version:1.2'  
+    end
+
+    lane_context[SharedValues::VERSION_NUMBER] = version_number
+
+    build_number = lane_context[SharedValues::BUILD_NUMBER]
+    puts "before build_number: #{build_number}"
+    lane_context[SharedValues::BUILD_NUMBER] = increment_build_number(build_number: build_number.to_i + 1)
+    puts "after increasing build_number: #{lane_context[SharedValues::BUILD_NUMBER]}"
+  end
