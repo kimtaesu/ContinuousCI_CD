@@ -1,0 +1,16 @@
+//
+//  Debug.xcconfig
+//  Numero
+//
+//  Created by tskim on 07/10/2019.
+//  Copyright © 2019 Facebook. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "BuildType/Debug.BuildType.xcconfig"
+#include "Common/Common.xcconfig"
+
+PRODUCT_NAME = [Debug] Numero
+PRODUCT_BUNDLE_IDENTIFIER = com.assin.numero.debug

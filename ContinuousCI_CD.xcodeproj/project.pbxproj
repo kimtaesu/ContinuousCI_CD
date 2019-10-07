@@ -17,6 +17,12 @@
 		BDD18FCD234B3392009A4B5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FCB234B3392009A4B5C /* LaunchScreen.storyboard */; };
 		BDD18FD8234B3392009A4B5C /* ContinuousCI_CDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD18FD7234B3392009A4B5C /* ContinuousCI_CDTests.swift */; };
 		BDD18FE3234B3392009A4B5C /* ContinuousCI_CDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD18FE2234B3392009A4B5C /* ContinuousCI_CDUITests.swift */; };
+		BDD18FF9234B344D009A4B5C /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FF1234B344D009A4B5C /* Development.xcconfig */; };
+		BDD18FFA234B344D009A4B5C /* Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FF3234B344D009A4B5C /* Common.xcconfig */; };
+		BDD18FFB234B344D009A4B5C /* Versions.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FF4234B344D009A4B5C /* Versions.xcconfig */; };
+		BDD18FFC234B344D009A4B5C /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FF5234B344D009A4B5C /* Production.xcconfig */; };
+		BDD18FFD234B344D009A4B5C /* Debug.BuildType.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FF7234B344D009A4B5C /* Debug.BuildType.xcconfig */; };
+		BDD18FFE234B344D009A4B5C /* Release.BuildType.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BDD18FF8234B344D009A4B5C /* Release.BuildType.xcconfig */; };
 		C02D6A8BCBBFF7165CAC2ECF /* Pods_ContinuousCI_CDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125A880E48ECB4C8B8373E3C /* Pods_ContinuousCI_CDTests.framework */; };
 		EEA2EFE6D0B967FBEF5945C0 /* Pods_ContinuousCI_CD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FFADF0C15C298625138D33 /* Pods_ContinuousCI_CD.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +68,12 @@
 		BDD18FDE234B3392009A4B5C /* ContinuousCI_CDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContinuousCI_CDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD18FE2234B3392009A4B5C /* ContinuousCI_CDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousCI_CDUITests.swift; sourceTree = "<group>"; };
 		BDD18FE4234B3392009A4B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDD18FF1234B344D009A4B5C /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		BDD18FF3234B344D009A4B5C /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		BDD18FF4234B344D009A4B5C /* Versions.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Versions.xcconfig; sourceTree = "<group>"; };
+		BDD18FF5234B344D009A4B5C /* Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		BDD18FF7234B344D009A4B5C /* Debug.BuildType.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.BuildType.xcconfig; sourceTree = "<group>"; };
+		BDD18FF8234B344D009A4B5C /* Release.BuildType.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.BuildType.xcconfig; sourceTree = "<group>"; };
 		E842EC2F5D2C33016F276F6F /* Pods-ContinuousCI_CD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContinuousCI_CD.debug.xcconfig"; path = "Target Support Files/Pods-ContinuousCI_CD/Pods-ContinuousCI_CD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,13 +115,13 @@
 				4038CF6A3E3871AB05B3930F /* Pods-ContinuousCI_CDUITests.debug.xcconfig */,
 				4FC1EA855AC830F108C6ECED /* Pods-ContinuousCI_CDUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		BDD18FB1234B3391009A4B5C = {
 			isa = PBXGroup;
 			children = (
+				BDD18FF0234B344D009A4B5C /* BuildConfiguration */,
 				BDD18FBC234B3391009A4B5C /* ContinuousCI_CD */,
 				BDD18FD6234B3392009A4B5C /* ContinuousCI_CDTests */,
 				BDD18FE1234B3392009A4B5C /* ContinuousCI_CDUITests */,
@@ -160,6 +172,36 @@
 				BDD18FE4234B3392009A4B5C /* Info.plist */,
 			);
 			path = ContinuousCI_CDUITests;
+			sourceTree = "<group>";
+		};
+		BDD18FF0234B344D009A4B5C /* BuildConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				BDD18FF1234B344D009A4B5C /* Development.xcconfig */,
+				BDD18FF5234B344D009A4B5C /* Production.xcconfig */,
+				BDD18FF2234B344D009A4B5C /* Common */,
+				BDD18FF6234B344D009A4B5C /* BuildType */,
+			);
+			name = BuildConfiguration;
+			path = fastlane/BuildConfiguration;
+			sourceTree = "<group>";
+		};
+		BDD18FF2234B344D009A4B5C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BDD18FF3234B344D009A4B5C /* Common.xcconfig */,
+				BDD18FF4234B344D009A4B5C /* Versions.xcconfig */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BDD18FF6234B344D009A4B5C /* BuildType */ = {
+			isa = PBXGroup;
+			children = (
+				BDD18FF7234B344D009A4B5C /* Debug.BuildType.xcconfig */,
+				BDD18FF8234B344D009A4B5C /* Release.BuildType.xcconfig */,
+			);
+			path = BuildType;
 			sourceTree = "<group>";
 		};
 		CDF7760AB5178024AB56BEB6 /* Frameworks */ = {
@@ -279,9 +321,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD18FFA234B344D009A4B5C /* Common.xcconfig in Resources */,
 				BDD18FCD234B3392009A4B5C /* LaunchScreen.storyboard in Resources */,
+				BDD18FFE234B344D009A4B5C /* Release.BuildType.xcconfig in Resources */,
+				BDD18FFC234B344D009A4B5C /* Production.xcconfig in Resources */,
 				BDD18FCA234B3392009A4B5C /* Assets.xcassets in Resources */,
+				BDD18FF9234B344D009A4B5C /* Development.xcconfig in Resources */,
 				BDD18FC5234B3391009A4B5C /* Main.storyboard in Resources */,
+				BDD18FFD234B344D009A4B5C /* Debug.BuildType.xcconfig in Resources */,
+				BDD18FFB234B344D009A4B5C /* Versions.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
