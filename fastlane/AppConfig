@@ -1,5 +1,0 @@
-lane_context["bundle_id"] = get_xcconfig_value(
-    path: 'fastlane/BuildConfiguration/Production.xcconfig',
-    name: 'APP_IDENTIFIER'
-  )
-

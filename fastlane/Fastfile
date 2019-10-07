@@ -13,53 +13,12 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-import './Accounts'
-import './AppConfig'
-
 default_platform(:ios)
-
-
-
-# devices([
-#   "iPhone 8",
-#   "iPhone 8 Plus",
-#   "iPhone 11 Pro Max",
-# ])
-
-# languages([
-#   "en-US"
-# ])
-
-# # The name of the scheme which contains the UI Tests
-# scheme("SnapshotTests")
-
-# # Where should the resulting screenshots be stored?
-# output_directory("./screenshots")
-
-# # remove the '#' to clear all previously generated screenshots before creating new ones
-# clear_previous_screenshots(true)
-
-# # Arguments to pass to the app on launch. See https://docs.fastlane.tools/actions/snapshot/#launch-arguments
-# # launch_arguments(["-favColor red"])
-
-# # For more information about all available options run
-# # fastlane action snapshot
-
-# ios_version '13.0'
-
 
 platform :ios do
   desc "Generate new localized screenshots"
-  lane :release do
+  lane :release do | options |
+    puts options
   end
-
-  lane :lint do 
-  	precheck(
-  		app_identifier: lane_context['bundle_id'],
-  		username: lane_context['username'],
-  		team_id: lane_context['team_id'],
-  		team_name: lane_context['team_name']
-  		)
-  end 
 end
 
