@@ -1,0 +1,27 @@
+language: objective-c
+osx_image: xcode11
+sudo: false
+
+cache:
+  - bundler
+  - cocoapods
+
+env:
+  global:
+    - WORKSPACE="ContinuousCI_CD.xcworkspace"
+    - SCHEME="Production"
+    - IOS_SDK="iphonesimulator13.0"
+  matrix:
+    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
+
+install:
+  - bundle install --deployment
+  - bundle exec pod --version
+  - bundle exec pod repo update --verbose
+  - bundle exec pod install
+
+before_script:
+  - set -o pipefail
+
+script:
+  - fastlane upload_testflight
