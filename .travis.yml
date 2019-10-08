@@ -15,7 +15,9 @@ env:
     - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
 
 install:
-  - bundle install
+  - bundle install --deployment
+  - gem uninstall cocoapods
+  - gem install -n /usr/local/bin cocoapods
   - bundle exec pod --version
   - bundle exec pod repo update --verbose
   - bundle exec pod install
