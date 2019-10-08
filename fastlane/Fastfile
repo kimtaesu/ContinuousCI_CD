@@ -37,29 +37,10 @@ lane_context['app_name'] = get_xcconfig_value(
   name: 'PRODUCT_NAME'
 ) 
 
-
-
 platform :ios do  
-  desc "Push a new release build to the App Store"
-  lane :beta do | options |
-    build
-    crashlytics(
-      crashlytics_path: './Pods/Crashlytics/Crashlytics.framework',
-      api_token: '01a8a326ef40f1e4010685ff3fe389ad91c04149',
-      build_secret: '4f7b6feb7d1e7498160d8920b040828ccb45071a71a170c4006a4075e69fd0c8',
-      ipa_path: "#{lane_context[SharedValues::IPA_OUTPUT_PATH]}",
-      groups: options[:groups],
-      notifications: options[:notifications],
-      notes_path: RELEASE_NOTE_PATH,
-      emails: 'kimtaesoo188@gmail.com' # testers
-    )
-  end 
-
-  desc "Push a new release build to the App Store"
+  desc "build"
   private_lane :build do | options |
-    ensure_git_status_clean
-
-    match(type: 'appstore', readonly: true)
+    # ensure_git_status_clean
     build_ios_app(
       scheme: "Production",
       clean: true,
@@ -69,19 +50,65 @@ platform :ios do
     puts "generate ipa: #{lane_context[SharedValues::IPA_OUTPUT_PATH]}"
   end 
 
+  desc "Push a new release build to the TestFlight"
+  lane :upload_testflight do | options |
+    match(type: 'appstore', readonly: true)
+    build
+    pilot(
+      beta_app_review_info: {
+        contact_email: "email@email.com",
+        contact_first_name: "Connect",
+        contact_last_name: "API",
+        contact_phone: "5558675309",
+        demo_account_name: "demo@email.com",
+        demo_account_password: "connectapi",
+        notes: "this is review note for the reviewer <3 thank you for reviewing"
+      },
+      testers_file_path:'fastlane/Testers/testers.csv',
+      username:"kimtaesoo1888@gmail.com",
+      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+    )
+  end 
+  
+  lane :refresh_dsyms do
+    download_dsyms # Download dSYM files from iTC
+    upload_symbols_to_crashlytics # Upload them to Crashlytics
+    clean_build_artifacts # Delete the local dSYM files
+  end
+
+  desc "Push a new release build to the Crashlytics"
+  lane :upload_beta do | options |
+    match(type: 'development', readonly: true)
+    build
+    puts lane_context
+    crashlytics(
+      crashlytics_path: './Pods/Crashlytics/Crashlytics.framework',
+      api_token: '01a8a326ef40f1e4010685ff3fe389ad91c04149',
+      build_secret: '4f7b6feb7d1e7498160d8920b040828ccb45071a71a170c4006a4075e69fd0c8',
+      ipa_path: "#{lane_context[SharedValues::IPA_OUTPUT_PATH]}",
+      groups: options[:groups],
+      notifications: options[:notifications],
+      notes_path: RELEASE_NOTE_PATH,
+      emails: 'kimtaesoo1888@gmail.com' # testers
+    )
+  end 
+
+  
+
   desc "Push a new release build to the App Store"
-  lane :appstore do | options |
+  lane :upload_appstore do | options |
     # puts "determine version_number: [#{lane_context[SharedValues::VERSION_NUMBER]}] build_number: [#{lane_context[SharedValues::BUILD_NUMBER]}]"
 
-    # produce(
-    #   app_name:lane_context['app_name'],
-    #   enable_services: {
-    #     push_notification: "on"
-    #   }
-    # )
+    produce(
+      app_name:lane_context['app_name'],
+      enable_services: {
+        push_notification: "on"
+      }
+    )
   
-    # precheck
-    # snapshot
+    precheck
+    snapshot
+    match(type: 'appstore', readonly: true)
     build
     deliver(
       force:true,

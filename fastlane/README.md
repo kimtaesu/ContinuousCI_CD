@@ -34,14 +34,24 @@ fastlane patch
 ----
 
 ## iOS
-### ios beta
+### ios upload_testflight
 ```
-fastlane ios beta
+fastlane ios upload_testflight
 ```
-Push a new release build to the App Store
-### ios appstore
+Push a new release build to the TestFlight
+### ios refresh_dsyms
 ```
-fastlane ios appstore
+fastlane ios refresh_dsyms
+```
+
+### ios upload_beta
+```
+fastlane ios upload_beta
+```
+Push a new release build to the Crashlytics
+### ios upload_appstore
+```
+fastlane ios upload_appstore
 ```
 Push a new release build to the App Store
 
