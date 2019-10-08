@@ -16,8 +16,6 @@ env:
 
 install:
   - bundle install --deployment
-  - gem uninstall cocoapods
-  - gem install -n /usr/local/bin cocoapods
   - bundle exec pod --version
   - bundle exec pod repo update --verbose
   - bundle exec pod install
