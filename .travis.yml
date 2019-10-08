@@ -15,7 +15,7 @@ env:
     - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
 
 install:
-  - bundle install --deployment
+  - bundle install
   - bundle exec pod --version
   - bundle exec pod repo update --verbose
   - bundle exec pod install
