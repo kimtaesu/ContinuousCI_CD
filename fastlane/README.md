@@ -15,11 +15,21 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-### set_build_version
+### major
 ```
-fastlane set_build_version
+fastlane major
 ```
-Generate new localized screenshots
+
+### minor
+```
+fastlane minor
+```
+
+### patch
+```
+fastlane patch
+```
+
 
 ----
 

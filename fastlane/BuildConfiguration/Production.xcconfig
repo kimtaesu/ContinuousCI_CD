@@ -14,5 +14,5 @@
 
 DISPLAY_NAME = AssinCICD
 PRODUCT_NAME = AssinCICD
-PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuous
-APP_IDENTIFIER = com.assin.continuous
+PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuousci
+APP_IDENTIFIER = com.assin.continuousci

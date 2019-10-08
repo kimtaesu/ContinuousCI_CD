@@ -1,25 +1,36 @@
+lane :major do | options |
+  version_number = increment_version_number(
+        bump_type: "major"
+      )
+  update_version(version_number)
+end 
+lane :minor do | options |
+  version_number = increment_version_number(
+      bump_type: "minor"
+    )
+    update_version(version_number)
+end 
+lane :patch do | options |
+  version_number = increment_version_number(
+    bump_type: "patch"
+  )
+  update_version(version_number)
+end 
 
-  desc "Generate new localized screenshots"
-  lane :set_build_version do | options |
+def update_version(version_number)
+  build_number = increment_build_number(
+    build_number: lane_context[SharedValues::BUILD_NUMBER].to_i + 1
+  )
+  
+  update_xcconfig_value(
+    path: VERSION_CONFIG_PATH,
+    name: 'BUNDLE_VERSION',
+    value: version_number
+  )
 
-    version_number = ""
-
-    if options[:'v']
-      version_number = options[:'v']
-    end
-
-    if options[:'version']
-      version_number = options[:'version']
-    end
-
-    if version_number.nil? || version_number.empty?
-      raise 'Usage: fastlane release v:1.2 or version:1.2'  
-    end
-
-    lane_context[SharedValues::VERSION_NUMBER] = version_number
-
-    build_number = lane_context[SharedValues::BUILD_NUMBER]
-    puts "before build_number: #{build_number}"
-    lane_context[SharedValues::BUILD_NUMBER] = increment_build_number(build_number: build_number.to_i + 1)
-    puts "after increasing build_number: #{lane_context[SharedValues::BUILD_NUMBER]}"
-  end
+  update_xcconfig_value(
+    path: VERSION_CONFIG_PATH,
+    name: 'LONG_BUNDLE_VERSION',
+    value: build_number
+  )
+end

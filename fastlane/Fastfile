@@ -30,11 +30,33 @@ lane_context[SharedValues::VERSION_NUMBER] = get_xcconfig_value(
   name: 'BUNDLE_VERSION'
 ) 
 
-platform :ios do
+lane_context['app_name'] = get_xcconfig_value(
+  path: PRODUCTION_CONFIG_PATH,
+  name: 'PRODUCT_NAME'
+) 
+
+
+platform :ios do  
   desc "Push a new release build to the App Store"
   lane :release do | options |
-    set_build_version(options)
-    puts "determine version_number: [#{lane_context[SharedValues::VERSION_NUMBER]}] build_number: [#{lane_context[SharedValues::BUILD_NUMBER]}]"
+    # precheck
+    # snapshot
+    # puts "determine version_number: [#{lane_context[SharedValues::VERSION_NUMBER]}] build_number: [#{lane_context[SharedValues::BUILD_NUMBER]}]"
+
+    # produce(
+    #   app_name:lane_context['app_name'],
+    #   enable_services: {
+    #     push_notification: "on"
+    #   }
+    # )
+    # deliver(force:true)
+    match(type: 'appstore', readonly: true)
+    build_ios_app(
+      scheme: "Production",
+      clean: true,
+      output_directory: "fastlane/build", 
+      output_name: "#{lane_context['app_name']}.ipa"
+    )
   end
 end
 

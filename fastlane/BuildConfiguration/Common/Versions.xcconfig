@@ -8,5 +8,7 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-BUNDLE_VERSION = 55.1
-LONG_BUNDLE_VERSION = 2
+
+// major.minor.patch
+BUNDLE_VERSION = 56.0.0
+LONG_BUNDLE_VERSION = 7
