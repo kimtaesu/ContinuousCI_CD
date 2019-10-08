@@ -20,14 +20,63 @@
                ReferencedContainer = "container:ContinuousCI_CD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD18FD2234B3392009A4B5C"
+               BuildableName = "ContinuousCI_CDTests.xctest"
+               BlueprintName = "ContinuousCI_CDTests"
+               ReferencedContainer = "container:ContinuousCI_CD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD18FDD234B3392009A4B5C"
+               BuildableName = "ContinuousCI_CDUITests.xctest"
+               BlueprintName = "ContinuousCI_CDUITests"
+               ReferencedContainer = "container:ContinuousCI_CD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD18FD2234B3392009A4B5C"
+               BuildableName = "ContinuousCI_CDTests.xctest"
+               BlueprintName = "ContinuousCI_CDTests"
+               ReferencedContainer = "container:ContinuousCI_CD.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD18FDD234B3392009A4B5C"
+               BuildableName = "ContinuousCI_CDUITests.xctest"
+               BlueprintName = "ContinuousCI_CDUITests"
+               ReferencedContainer = "container:ContinuousCI_CD.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

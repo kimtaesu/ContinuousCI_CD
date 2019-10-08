@@ -40,9 +40,19 @@ lane_context['app_name'] = get_xcconfig_value(
 ) 
 
 platform :ios do  
+  desc "test"
+  private_lane :test do | options |
+    # ensure_git_status_clean
+    scan(
+      scheme: "Development",
+      code_coverage: true,
+      configuration: "Debug"
+    )
+  end 
   desc "build"
   private_lane :build do | options |
     # ensure_git_status_clean
+    test
     build_ios_app(
       scheme: "Production",
       clean: true,
