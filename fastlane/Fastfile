@@ -49,13 +49,18 @@ platform :ios do
     #     push_notification: "on"
     #   }
     # )
-    # deliver(force:true)
+  
     match(type: 'appstore', readonly: true)
     build_ios_app(
       scheme: "Production",
       clean: true,
       output_directory: "fastlane/build", 
       output_name: "#{lane_context['app_name']}.ipa"
+    )
+    deliver(
+      force:true,
+      ipa:"fastlane/build/#{lane_context['app_name']}.ipa",
+      app_version:lane_context[SharedValues::VERSION_NUMBER]
     )
   end
 end
