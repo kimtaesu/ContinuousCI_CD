@@ -34,9 +34,9 @@ fastlane patch
 ----
 
 ## iOS
-### ios release
+### ios appstore
 ```
-fastlane ios release
+fastlane ios appstore
 ```
 Push a new release build to the App Store
 
