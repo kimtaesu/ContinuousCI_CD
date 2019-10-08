@@ -34,6 +34,11 @@ fastlane patch
 ----
 
 ## iOS
+### ios beta
+```
+fastlane ios beta
+```
+Push a new release build to the App Store
 ### ios appstore
 ```
 fastlane ios appstore

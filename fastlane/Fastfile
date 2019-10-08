@@ -20,6 +20,7 @@ default_platform(:ios)
 
 PRODUCTION_CONFIG_PATH = 'fastlane/BuildConfiguration/Production.xcconfig'
 VERSION_CONFIG_PATH = 'fastlane/BuildConfiguration/Common/Versions.xcconfig'
+RELEASE_NOTE_PATH = 'fastlane/build/build_notes.md'
 
 lane_context[SharedValues::BUILD_NUMBER] = get_xcconfig_value(
   path: VERSION_CONFIG_PATH,
@@ -37,7 +38,23 @@ lane_context['app_name'] = get_xcconfig_value(
 ) 
 
 
+
 platform :ios do  
+  desc "Push a new release build to the App Store"
+  lane :beta do | options |
+    build
+    crashlytics(
+      crashlytics_path: './Pods/Crashlytics/Crashlytics.framework',
+      api_token: '01a8a326ef40f1e4010685ff3fe389ad91c04149',
+      build_secret: '4f7b6feb7d1e7498160d8920b040828ccb45071a71a170c4006a4075e69fd0c8',
+      ipa_path: "#{lane_context[SharedValues::IPA_OUTPUT_PATH]}",
+      groups: options[:groups],
+      notifications: options[:notifications],
+      notes_path: RELEASE_NOTE_PATH,
+      emails: 'kimtaesoo188@gmail.com' # testers
+    )
+  end 
+
   desc "Push a new release build to the App Store"
   private_lane :build do | options |
     ensure_git_status_clean
