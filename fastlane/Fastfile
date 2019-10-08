@@ -13,6 +13,9 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+# https://docs.fastlane.tools/best-practices/continuous-integration/travis/
+setup_travis
+
 import './VersionFastFile'
 import './AppleAccounts'
 
