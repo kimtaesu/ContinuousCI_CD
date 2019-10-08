@@ -34,11 +34,11 @@ fastlane patch
 ----
 
 ## iOS
-### ios test
+### ios build
 ```
-fastlane ios test
+fastlane ios build
 ```
-test
+build
 ### ios upload_testflight
 ```
 fastlane ios upload_testflight
