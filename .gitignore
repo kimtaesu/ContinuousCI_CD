@@ -145,7 +145,6 @@ fastlane/screenshots
 fastlane/build
 fastlane/Testers
 fastlane/Appfile
-fastlane/AppleAccounts
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png

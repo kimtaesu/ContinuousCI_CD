@@ -17,7 +17,6 @@
 setup_travis
 
 import './VersionFastFile'
-import './AppleAccounts'
 
 default_platform(:ios)
 
@@ -55,6 +54,7 @@ platform :ios do
 
   desc "Push a new release build to the TestFlight"
   lane :upload_testflight do | options |
+    minor
     match(type: 'appstore', readonly: true)
     build
     pilot(
@@ -81,6 +81,7 @@ platform :ios do
 
   desc "Push a new release build to the Crashlytics"
   lane :upload_beta do | options |
+    minor
     match(type: 'development', readonly: true)
     build
     puts lane_context
@@ -101,7 +102,7 @@ platform :ios do
   desc "Push a new release build to the App Store"
   lane :upload_appstore do | options |
     # puts "determine version_number: [#{lane_context[SharedValues::VERSION_NUMBER]}] build_number: [#{lane_context[SharedValues::BUILD_NUMBER]}]"
-
+    minor   
     produce(
       app_name:lane_context['app_name'],
       enable_services: {
