@@ -31,11 +31,16 @@ install:
 
 script:
   - xcodebuild clean build test
-    -workspace $WORKSPACE
-    -scheme $SCHEME
-    -sdk $SDK
-    -destination $DESTINATION
+    -workspace "$WORKSPACE"
+    -scheme "$SCHEME"
+    -sdk "$SDK"
+    -destination "$DESTINATION"
     -configuration Debug
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t $CODE_COV_TOKEN
+  - bash <(curl -s https://codecov.io/bash) -t "$CODE_COV_TOKEN"
+
+notifications:
+  slack:
+    rooms:
+    - assincontinuousci:HLkeWcwYvimTS35OqW7De3aF#general
