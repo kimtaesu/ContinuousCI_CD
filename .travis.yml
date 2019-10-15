@@ -18,15 +18,22 @@ env:
     - SCHEME="Development"
   matrix:
     - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
-    # - SDK="$IOS_SDK_13_1" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
+    - DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
+
+before_script:
+  - set -o pipefail
 
 jobs:
   include:
-    - &iOS      
+    - &iOS    
+      stage: iOS
       name: iOS Xcode11 Swift5
     - <<: *iOS
-      name: testss
+      name: Build
       script: xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION"
+    - <<: *iOS
+      name: Test
+      script: xcodebuild clean test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION"
       
 install:
   - bundle install --deployment
@@ -34,5 +41,5 @@ install:
   - bundle exec pod repo update --verbose
   - bundle exec pod install
 
-before_script:
-  - set -o pipefail
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t de2aad49-910f-4bdf-8520-9e966d02b251
