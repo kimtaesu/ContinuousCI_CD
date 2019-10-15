@@ -5,7 +5,6 @@ branches:
 
 language: swift
 xcode_scheme: Development
-xcode_project: ContinuousCI_CD.xcworkspace
 osx_image: xcode11
 sudo: false
 
@@ -17,10 +16,10 @@ env:
   global:
     - WORKSPACE="ContinuousCI_CD.xcworkspace"
     - SCHEME="Development"
-    - IOS_SDK="iphonesimulator13.1"
+    - IOS_SDK_13_1 ="iphonesimulator13.1"
   matrix:
-    - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.1"
-    - DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
+    - SDK="$IOS_SDK_13_1" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.1"
+    # - SDK="$IOS_SDK_13_1" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
 
 jobs:
   include:
@@ -33,6 +32,7 @@ jobs:
       xcode_sdk: "$IOS_SDK"
       xcode_destination: "$DESTINATION"
     - <<: *iOS
+      name: testss
       script: xcodebuild clean build -configuration Debug
       
 install:
