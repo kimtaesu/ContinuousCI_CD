@@ -16,30 +16,27 @@ env:
   global:
     - WORKSPACE="ContinuousCI_CD.xcworkspace"
     - SCHEME="Development"
+    - IOS_SDK="iphonesimulator13.0"
   matrix:
-    - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
-    - DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
+    - SDK="$IOS_SDK" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
+    - SDK="$IOS_SDK" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
 
 before_script:
   - set -o pipefail
-
-jobs:
-  include:
-    - &iOS    
-      stage: iOS
-      name: iOS Xcode11 Swift5
-    - <<: *iOS
-      name: Build
-      script: xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION"
-    - <<: *iOS
-      name: Test
-      script: xcodebuild clean test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION"
       
 install:
   - bundle install --deployment
   - bundle exec pod --version
   - bundle exec pod repo update --verbose
   - bundle exec pod install
+
+script:
+  - xcodebuild clean build test
+    -workspace "$WORKSPACE"
+    -scheme "$SCHEME"
+    -sdk "$SDK"
+    -destination "$DESTINATION"
+    -configuration Debug
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t de2aad49-910f-4bdf-8520-9e966d02b251
