@@ -4,27 +4,36 @@ branches:
     - /^release-.*$/
 
 language: swift
-xcode_scheme: Production
+xcode_scheme: Development
 xcode_project: ContinuousCI_CD.xcworkspace
-sudo: false
 osx_image: xcode11
+sudo: false
 
 cache:
   - bundler
   - cocoapods
 
 env: 
+  global:
+    - WORKSPACE="ContinuousCI_CD.xcworkspace"
+    - SCHEME="Development"
+    - IOS_SDK="iphonesimulator13.1"
   matrix:
     - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.1"
     - DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
 
 jobs:
   include:
-    - stage: Build  # naming the Tests stage
-      name: Debug Build # names the first Tests stage job
-      script: xcodebuild clean build -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
-    - script: xcodebuild clean test -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
-      name: Debug Test
+    - &iOS
+      stage: iOS Build
+      env: SWIFT=5.0
+      name: iOS Xcode11 Swift5
+      xcode_project: "$WORKSPACE"
+      xcode_scheme: "$SCHEME"
+      xcode_sdk: "$IOS_SDK"
+      xcode_destination: "$DESTINATION"
+    - <<: *iOS
+      script: xcodebuild clean build -configuration Debug
       
 install:
   - bundle install --deployment
