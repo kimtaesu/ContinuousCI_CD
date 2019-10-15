@@ -33,4 +33,6 @@ install:
   - bundle exec pod install
 
 before_script:
-  - set -euo pipefail
+  - set -o pipefail
+  - xcodebuild -showsdks
+  - xcodebuild -scheme Development -showdestinations
