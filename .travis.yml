@@ -34,5 +34,3 @@ install:
 
 before_script:
   - set -o pipefail
-  - xcodebuild -showsdks
-  - xcodebuild -scheme Development -showdestinations
