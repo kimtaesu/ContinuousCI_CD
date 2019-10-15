@@ -17,7 +17,7 @@ env:
     - WORKSPACE="ContinuousCI_CD.xcworkspace"
     - SCHEME="Development"
   matrix:
-    - SDK="iphonesimulator13.0" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
+    - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
     # - SDK="$IOS_SDK_13_1" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
       name: iOS Xcode11 Swift5
     - <<: *iOS
       name: testss
-      script: xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug
+      script: xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION"
       
 install:
   - bundle install --deployment
