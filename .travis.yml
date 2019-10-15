@@ -23,8 +23,8 @@ jobs:
     - stage: Build  # naming the Tests stage
       name: Debug Build # names the first Tests stage job
       script: xcodebuild clean build -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
-      script: xcodebuild clean test -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
-    - name: Debug Test
+    - script: xcodebuild clean test -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
+      name: Debug Test
       
 install:
   - bundle install --deployment
