@@ -17,6 +17,20 @@ lane :patch do | options |
   update_version(version_number)
 end 
 
+def increase_build_number(build_number)
+  build_number = increment_build_number(
+    build_number: lane_context[SharedValues::BUILD_NUMBER].to_i + 1
+  )
+
+  update_xcconfig_value(
+    path: VERSION_CONFIG_PATH,
+    name: 'LONG_BUNDLE_VERSION',
+    value: build_number
+  )
+  build_number
+end
+
+
 def update_version(version_number)
   build_number = increment_build_number(
     build_number: lane_context[SharedValues::BUILD_NUMBER].to_i + 1

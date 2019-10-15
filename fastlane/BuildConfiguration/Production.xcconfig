@@ -15,5 +15,5 @@
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 DISPLAY_NAME = AssinCICD
 PRODUCT_NAME = AssinCICD
-PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuousci
-APP_IDENTIFIER = com.assin.continuousci
+PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuousci2
+APP_IDENTIFIER = com.assin.continuousci2

@@ -1,18 +1,23 @@
-language: objective-c
-osx_image: xcode11
+language: swift
+xcode_scheme: Production
+xcode_project: ContinuousCI_CD.xcworkspace
 sudo: false
 
 cache:
   - bundler
   - cocoapods
 
-env:
-  global:
-    - WORKSPACE="ContinuousCI_CD.xcworkspace"
-    - SCHEME="Production"
-    - IOS_SDK="iphonesimulator13.0"
-  matrix:
-    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
+jobs:
+  include:
+    - &iOS
+      stage: iOS
+      osx_image: xcode11
+      name: iPhone SE
+      xcode_destination: 'OS=13,name=iPhone SE'
+    - <<: *iOS
+      osx_image: xcode11
+      name: iPad
+      xcode_destination: 'OS=13,name=iPad Pro (11-inch)'
 
 install:
   - bundle install --deployment
@@ -20,11 +25,5 @@ install:
   - bundle exec pod repo update --verbose
   - bundle exec pod install
 
-before_script:
-  - set -o pipefail
-
 script:
-  - fastlane upload_testflight --verbose
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - echo Test

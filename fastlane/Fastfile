@@ -49,6 +49,7 @@ platform :ios do
       configuration: "Debug"
     )
   end 
+  
   desc "build"
   private_lane :build do | options |
     # ensure_git_status_clean
@@ -64,22 +65,24 @@ platform :ios do
 
   desc "Push a new release build to the TestFlight"
   lane :upload_testflight do | options |
-    match(type: 'appstore', readonly: true)
-    build
-    pilot(
-      beta_app_review_info: {
-        contact_email: "email@email.com",
-        contact_first_name: "Connect",
-        contact_last_name: "API",
-        contact_phone: "5558675309",
-        demo_account_name: "demo@email.com",
-        demo_account_password: "connectapi",
-        notes: "this is review note for the reviewer <3 thank you for reviewing"
-      },
-      testers_file_path:'fastlane/Testers/testers.csv',
-      username:"kimtaesoo1888@gmail.com",
-      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
-    )
+    build_number = latest_testflight_build_number
+    puts increase_build_number(build_number)
+    # match(type: 'appstore', readonly: true)
+    # build
+    # pilot(
+    #   beta_app_review_info: {
+    #     contact_email: "email@email.com",
+    #     contact_first_name: "Connect",
+    #     contact_last_name: "API",
+    #     contact_phone: "5558675309",
+    #     demo_account_name: "demo@email.com",
+    #     demo_account_password: "connectapi",
+    #     notes: "this is review note for the reviewer <3 thank you for reviewing"
+    #   },
+    #   testers_file_path:'fastlane/Testers/testers.csv',
+    #   username:"kimtaesoo1888@gmail.com",
+    #   ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+    # )
   end 
   
   lane :refresh_dsyms do
@@ -106,9 +109,7 @@ platform :ios do
   end 
 
   
-
-  desc "Push a new release build to the App Store"
-  lane :upload_appstore do | options |
+  lane :prepare_metadata do | options |
     # puts "determine version_number: [#{lane_context[SharedValues::VERSION_NUMBER]}] build_number: [#{lane_context[SharedValues::BUILD_NUMBER]}]" 
     produce(
       app_name:lane_context['app_name'],
@@ -119,12 +120,24 @@ platform :ios do
   
     precheck
     snapshot
+    build
+    deliver(
+      force:true,
+      username:"kimtaesoo1888@gmail.com"
+    )
+  end
+
+  desc "Push a new release build to the App Store"
+  lane :upload_appstore do | options |
     match(type: 'appstore', readonly: true)
     build
     deliver(
       force:true,
       username:"kimtaesoo1888@gmail.com",
-      ipa:lane_context[SharedValues::IPA_OUTPUT_PATH] ,
+      skip_metadata:true,
+      skip_screenshots:true,
+      skip_binary_upload:false,
+      ipa:lane_context[SharedValues::IPA_OUTPUT_PATH],
       app_version:lane_context[SharedValues::VERSION_NUMBER]
     )
   end

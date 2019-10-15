@@ -34,11 +34,6 @@ fastlane patch
 ----
 
 ## iOS
-### ios build
-```
-fastlane ios build
-```
-build
 ### ios upload_testflight
 ```
 fastlane ios upload_testflight
@@ -54,6 +49,11 @@ fastlane ios refresh_dsyms
 fastlane ios upload_beta
 ```
 Push a new release build to the Crashlytics
+### ios prepare_metadata
+```
+fastlane ios prepare_metadata
+```
+
 ### ios upload_appstore
 ```
 fastlane ios upload_appstore

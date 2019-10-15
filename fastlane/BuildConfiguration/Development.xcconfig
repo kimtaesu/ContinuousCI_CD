@@ -15,5 +15,5 @@
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 PRODUCT_NAME = Debug_AssinCICD
 DISPLAY_NAME = Debug_AssinCICD
-PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuousci.debug
-APP_IDENTIFIER = com.assin.continuousci.debug
+PRODUCT_BUNDLE_IDENTIFIER = com.assin.continuousci2.debug
+APP_IDENTIFIER = com.assin.continuousci2.debug
