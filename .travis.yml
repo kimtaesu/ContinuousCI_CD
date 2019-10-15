@@ -16,21 +16,20 @@ env:
   global:
     - WORKSPACE="ContinuousCI_CD.xcworkspace"
     - SCHEME="Development"
-    - IOS_SDK_13_1 ="iphonesimulator13.1"
+    - IOS_SDK_13 ="iphonesimulator13.0"
   matrix:
-    - SDK="$IOS_SDK_13_1" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.1"
+    - SDK="$IOS_SDK_13" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
     # - SDK="$IOS_SDK_13_1" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
 
 jobs:
   include:
     - &iOS
       stage: iOS Build
-      env: SWIFT=5.0
       name: iOS Xcode11 Swift5
-      xcode_project: "$WORKSPACE"
-      xcode_scheme: "$SCHEME"
-      xcode_sdk: "$IOS_SDK"
-      xcode_destination: "$DESTINATION"
+      xcode_project: $WORKSPACE
+      xcode_scheme: $SCHEME
+      xcode_sdk: $SDK
+      xcode_destination: $DESTINATION
     - <<: *iOS
       name: testss
       script: xcodebuild clean build -configuration Debug
