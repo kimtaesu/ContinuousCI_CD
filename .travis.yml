@@ -1,29 +1,37 @@
+branches:
+  only:
+    - master
+    - /^release-.*$/
+
 language: swift
 xcode_scheme: Production
 xcode_project: ContinuousCI_CD.xcworkspace
 sudo: false
+osx_image: xcode11
 
 cache:
   - bundler
   - cocoapods
 
+env: 
+  matrix:
+    - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.1"
+    - DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
+
 jobs:
   include:
-    - &iOS
-      stage: iOS
-      osx_image: xcode11
-      name: iPhone SE
-      xcode_destination: 'OS=13,name=iPhone SE'
-    - <<: *iOS
-      osx_image: xcode11
-      name: iPad
-      xcode_destination: 'OS=13,name=iPad Pro (11-inch)'
-
+    - stage: Build  # naming the Tests stage
+      name: Debug Build # names the first Tests stage job
+      script: xcodebuild clean build -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
+    - name: Debug Test
+      script: xcodebuild clean test -workspace "ContinuousCI_CD.xcworkspace" -scheme "Development" -sdk "iphonesimulator13.1" -destination "platform=iOS Simulator,name=iPhone 8,OS=13.1" -configuration Debug
 install:
   - bundle install --deployment
   - bundle exec pod --version
   - bundle exec pod repo update --verbose
   - bundle exec pod install
 
-script:
-  - echo Test
+before_script:
+  - set -euo pipefail
+  - xcodebuild -showsdks
+  - xcodebuild -scheme Development -showdestinations
