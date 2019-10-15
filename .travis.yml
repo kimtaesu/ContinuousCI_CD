@@ -4,7 +4,6 @@ branches:
     - /^release-.*$/
 
 language: swift
-xcode_scheme: Development
 osx_image: xcode11
 sudo: false
 
@@ -19,7 +18,7 @@ env:
     - IOS_SDK="iphonesimulator13.0"
   matrix:
     - SDK="$IOS_SDK" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
-    - SDK="$IOS_SDK" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.1"
+    - SDK="$IOS_SDK" DESTINATION="platform=iOS Simulator,name=iPad Pro (11-inch),OS=13.0"
 
 before_script:
   - set -o pipefail
@@ -32,11 +31,11 @@ install:
 
 script:
   - xcodebuild clean build test
-    -workspace "$WORKSPACE"
-    -scheme "$SCHEME"
-    -sdk "$SDK"
-    -destination "$DESTINATION"
+    -workspace $WORKSPACE
+    -scheme $SCHEME
+    -sdk $SDK
+    -destination $DESTINATION
     -configuration Debug
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t de2aad49-910f-4bdf-8520-9e966d02b251
+  - bash <(curl -s https://codecov.io/bash) -t $CODE_COV_TOKEN
